@@ -3,16 +3,15 @@ kind: Deployment
 metadata:
   name: dp-webserver
 spec:
-  replicas: 3
   template:
     metadata:
       name: dp-pod-webserver
       labels:
-        app: dp-webserver
+        app: web-server
     spec:
       containers:
         - name: dp-webserver-container
-          image: nginx:1
+          image: nginx:stable
           ports:
             - containerPort: 80
           livenessProbe:
@@ -32,6 +31,7 @@ spec:
           resources:
             requests:
               cpu: 10m
+  replicas: 3
   selector:
     matchLabels:
-      app: dp-webserver
+      app: web-server
