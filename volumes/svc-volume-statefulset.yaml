@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-volume-statefulset
+spec:
+  type: NodePort
+  selector:
+    app: myapp
+  ports:
+    - port: 80
+      nodePort: 30000

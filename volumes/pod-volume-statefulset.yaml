@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pod-statefulset
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  replicas: 2
+  serviceName: svc-pod-statefulset
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx-container
+        image: registry.k8s.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: pvc
+          mountPath: /usr/share/nginx/html
+      volumes:
+        - name: pvc
+          persistentVolumeClaim:
+            claimName: mypvc
