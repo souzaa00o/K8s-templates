@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: pod-statefulset
+  name: statefulset-volumes
 spec:
   selector:
     matchLabels:
       app: myapp
   replicas: 2
-  serviceName: svc-pod-statefulset
+  serviceName: svc-statefulset-volume
   template:
     metadata:
       labels:
